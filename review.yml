@@ -1,0 +1,113 @@
+aid: spectora
+name: Spectora
+review:
+  question: Does Spectora expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Spectora publishes no documented
+    server-push transport (WebSocket or SSE) on its own platform. The only
+    event-driven surface is an outbound webhook: Spectora POSTs event payloads
+    to a URL the inspector configures (via Advanced Actions or the Zapier
+    integration). That is server-to-endpoint HTTP delivery, not a WebSocket the
+    caller connects to, and Spectora publishes no schema for those payloads, so
+    there is nothing stable to model as AsyncAPI.
+findings:
+  summary: |
+    Spectora does not publish a documented public WebSocket API. In fact,
+    Spectora publishes no documented public, self-serve developer REST API at
+    all - there is no developer portal, no API reference, no OpenAPI, no base
+    URL, and no self-serve API keys for third-party programmatic access as of
+    the review date. Spectora is home inspection software (report building,
+    scheduling, client/agent management, payments, website) used by 10,000+
+    inspectors. External connectivity is delivered through: (1) a Zapier
+    integration that requires the paid Spectora Advanced add-on and exposes only
+    four contact triggers; (2) outbound webhooks configured via Advanced Actions
+    that POST event data to a URL you provide; and (3) a fixed set of
+    vendor-built partner integrations. None of these is a callable public API,
+    and none uses WebSocket (ws:// or wss://).
+  publicApi: |
+    No public developer API is documented. Searches of spectora.com, the
+    Spectora Info Center (support.spectora.com), and general web results
+    surfaced no developer/API landing page, no API keys UI, and no API
+    reference. Programmatic access appears to be gated to partners/vendors who
+    build named integrations directly with Spectora, plus the self-serve Zapier
+    and webhook mechanisms below.
+  zapier: |
+    Spectora ships a Zapier app that REQUIRES the paid "Spectora Advanced"
+    add-on. Documented triggers are contact-oriented only: Agent contacts
+    created, Agent contacts updated, Client contacts created, Client contacts
+    updated. It sends new/updated contact information from Spectora out to other
+    Zapier-connected apps. Authentication is a Spectora-account OAuth-style
+    connect flow inside Zapier, not a developer API key.
+  webhooks: |
+    Through Advanced Actions, an inspector can configure an outbound webhook
+    that fires on an event (for example, an inspection scheduled by a first-time
+    client) and POSTs data (such as contact info) to a third-party webhook URL
+    (Zapier, Make, or a custom endpoint). This is outbound, one-way, and
+    configuration-time; Spectora does not document a public payload schema or an
+    inbound API to receive calls.
+  partnerIntegrations: |
+    A fixed catalog of vendor-built integrations exists rather than an open API:
+    QuickBooks Online, Google Calendar, Google Drive, Mailchimp, HomeBinder,
+    RecallChek, Repair Pricer, Blipp Reviews, InterNACHI BuyBack, and
+    call-center partners (Inspector Call Center, America's Call Center). These
+    are built and maintained by Spectora/its partners, not exposed as a public
+    developer API.
+  transports:
+    - protocol: Webhook
+      scheme: https
+      documented: partial
+      note: >-
+        Outbound event delivery via Advanced Actions / Zapier. Spectora POSTs to
+        a URL you supply. One-way, server-to-endpoint HTTP. No public payload
+        schema is published.
+    - protocol: REST
+      scheme: https
+      documented: false
+      note: >-
+        No public, self-serve developer REST API, developer portal, or API
+        reference is documented by Spectora as of the review date.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: >-
+        No WebSocket (ws:// or wss://) endpoint is documented anywhere in
+        Spectora's product or support material.
+  endpointsModeled: none
+  endpointsConfirmedRest: []
+sources:
+  - url: https://www.spectora.com/
+    type: Website
+    note: Product marketing; home inspection software, 10,000+ inspectors. No developer/API section.
+  - url: https://www.spectora.com/features/
+    type: Website
+    note: Feature list (reporting, scheduling, payments, website). No API surfaced.
+  - url: https://support.spectora.com/en/collections/903201-integrations
+    type: Documentation
+    note: Integrations hub. Lists Zapier, webhooks, and named partner integrations - no public API.
+  - url: https://support.spectora.com/en/articles/5949874-using-the-zapier-integration
+    type: Documentation
+    note: Zapier requires Spectora Advanced; triggers limited to agent/client contact created/updated. No API keys.
+  - url: https://support.spectora.com/en/articles/6723168-advanced-actions-choose-an-action-and-add-details
+    type: Documentation
+    note: Advanced Actions - outbound webhook configuration to third-party URLs.
+  - url: https://support.spectora.com/en/articles/5973917-spectora-system-integrations
+    type: Documentation
+    note: Named partner integrations (QuickBooks, Google Drive, Mailchimp, HomeBinder, RecallChek, etc.). No public REST/developer API mentioned.
+  - url: https://www.spectora.com/pricing/
+    type: Website
+    note: Per-inspector subscription pricing; Advanced add-on gates Zapier/automation.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket surface exists, and Spectora publishes no documented public
+    developer API of any kind. The apis.yml was authored as an honest stub with
+    no `apis` entries (nothing to point an API reference / OpenAPI / base URL
+    at) and a description that plainly states the access model: Zapier
+    (Advanced-only), outbound webhooks, and vendor-built partner integrations.
+    No AsyncAPI document was created because there is no documented, schema'd,
+    server-push transport on Spectora's own platform to model.

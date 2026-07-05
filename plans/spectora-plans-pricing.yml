@@ -1,0 +1,125 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Spectora
+providerId: spectora
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Home Inspection
+- Field Services
+- Per Inspector
+- Plans
+description: >-
+  Spectora is sold as a per-inspector SaaS subscription, not as a metered API.
+  The base plan is roughly $109/month (about $1,099/year on annual billing) for
+  the first inspector and includes report templates, the mobile app, a website,
+  scheduling, payments, and support with no per-inspection charge and no
+  contract. Each additional inspector is roughly $89/month (about $828/year).
+  The optional Spectora Advanced add-on is billed per published inspection
+  (about $3-4 per published report) and unlocks automation, CRM tooling,
+  business insights, and - importantly for integration - the Zapier connection.
+  There is no separate API pricing because there is no public developer API;
+  the only programmatic-adjacent capability (Zapier/webhooks) is gated behind
+  the Advanced add-on. Verify current rates on Spectora's pricing page during
+  reconciliation.
+notes: >-
+  Prices are approximate and change over time; figures reflect publicly cited
+  2026 pricing. There is no API plan, no rate card for programmatic calls, and
+  no self-serve API keys - integration is limited to Advanced-gated Zapier and
+  outbound webhooks.
+sources:
+- https://www.spectora.com/pricing/
+- https://support.spectora.com/en/articles/9236552-what-s-included-in-spectora-s-software
+- https://support.spectora.com/en/articles/5949874-using-the-zapier-integration
+plans:
+- id: spectora-base
+  name: Spectora (Base Subscription)
+  type: paid
+  description: >-
+    Per-inspector subscription for the first inspector. Includes report
+    templates, mobile app, website, scheduling, payments, and support. No
+    per-inspection fee, no contract, no inspection limits.
+  entries:
+  - label: First Inspector
+    name: base_inspector
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$109/month (~$1,099/year annual)
+    userMultiplied: false
+  elements:
+  - name: Report Templates
+  - name: Mobile App
+  - name: Website
+  - name: Scheduling
+  - name: Payments
+  - name: Support
+- id: spectora-additional-inspector
+  name: Additional Inspector
+  type: paid
+  description: >-
+    Each inspector added to the account beyond the first, billed per seat.
+  entries:
+  - label: Additional Inspector Seat
+    name: additional_inspector
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$89/month (~$828/year annual) per inspector
+    userMultiplied: true
+  elements:
+  - name: Full Inspector Access
+- id: spectora-advanced
+  name: Spectora Advanced (Add-On)
+  type: usage
+  description: >-
+    Optional add-on billed per published inspection. Unlocks automation, CRM
+    tools, business insights, and the Zapier integration plus advanced-action
+    webhooks (the only programmatic-adjacent integration surface Spectora
+    offers).
+  entries:
+  - label: Per Published Inspection
+    name: advanced_per_inspection
+    type: usage
+    metric: inspection
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$3-4 per published inspection
+    userMultiplied: false
+  elements:
+  - name: Automation
+  - name: CRM Tools
+  - name: Business Insights
+  - name: Zapier Integration
+  - name: Advanced Action Webhooks
+- id: spectora-trial
+  name: Free Trial
+  type: free
+  description: >-
+    Free trial with no credit card required for evaluating the software.
+  entries:
+  - label: Trial
+    name: trial
+    type: free
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (trial)
+    userMultiplied: false
+  elements:
+  - name: Product Evaluation
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
