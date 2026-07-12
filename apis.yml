@@ -37,6 +37,8 @@ specificationVersion: '0.19'
 # outbound webhooks, and vendor-built partner connectors - none of which expose
 # a callable public API surface. See review.yml for the full assessment.
 common:
+- type: DomainSecurity
+  url: security/spectora-domain-security.yml
 - type: Website
   url: https://www.spectora.com/
 - type: LinkedIn
