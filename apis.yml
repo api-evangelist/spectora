@@ -18,7 +18,19 @@ description: >-
   InterNACHI BuyBack, and call-center partners). All of these are
   configuration-time connectors and one-way (outbound) event flows rather than a
   documented request/response API you can call.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: true
+  try_now: false
+  public: false
+  label: Freemium (free trial)
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/spectora.png
 tags:
 - Home Inspection
 - Inspection Reports
