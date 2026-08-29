@@ -1,5 +1,7 @@
 aid: spectora
 url: https://raw.githubusercontent.com/api-evangelist/spectora/refs/heads/main/apis.yml
+x-api-posture: no-product-api
+x-api-posture-basis: observed
 name: Spectora
 kind: company
 description: >-
