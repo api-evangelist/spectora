@@ -48,7 +48,7 @@ tags:
 - Home Inspection
 - Inspection Reports
 - Field Service
-- Real-Estate
+- Real Estate
 - Scheduling
 - Webhook
 - Zapier
@@ -62,6 +62,7 @@ tags_raw:
 - Webhooks
 - Zapier
 - No Public API
+- Real-Estate
 created: '2026-07-04'
 modified: '2026-07-04'
 specificationVersion: '0.23'
