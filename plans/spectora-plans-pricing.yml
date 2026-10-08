@@ -128,3 +128,45 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  - seat
+  units:
+  - seat
+  plans:
+  - name: Spectora (Base Subscription)
+    access: paid
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Additional Inspector
+    access: paid
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Spectora Advanced (Add-On)
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - month
+  - name: Free Trial
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
