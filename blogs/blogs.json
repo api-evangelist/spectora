@@ -1,0 +1,21 @@
+{
+  "repo": "spectora",
+  "feeds": [
+    {
+      "source": "https://www.spectora.com/r",
+      "feed_url": "https://www.spectora.com/r/rss.xml",
+      "title": "",
+      "saved": 3,
+      "method": "discovered"
+    },
+    {
+      "source": "https://www.spectora.com/r/rss.xml",
+      "feed_url": "https://www.spectora.com/r/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "post_count": 3,
+  "fetched": "2026-10-10T13:15:00Z"
+}
